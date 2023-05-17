@@ -3,13 +3,13 @@
 # Create a BACKDOOR-STUB for ~/.ssh/authorized_keys or ~/.ssh/id_rsa.pub
 
 if [[ -t 1 ]]; then
-    CDR="\e[0;31m" # red
-    CDY="\e[0;33m" # yellow
-    CY="\e[1;33m" # yellow
-    CDM="\e[0;35m" # magenta
-    CM="\e[1;35m" # magenta
-    CDC="\e[0;36m" # cyan
-    CN="\e[0m"    # none
+    CDR="\\033[0;31m" # red
+    CDY="\\033[0;33m" # yellow
+    CY="\\033[1;33m" # yellow
+    CDM="\\033[0;35m" # magenta
+    CM="\\033[1;35m" # magenta
+    CDC="\\033[0;36m" # cyan
+    CN="\\033[0m"    # none
     out(){ echo "$@";}
 else
     out(){ :;}
