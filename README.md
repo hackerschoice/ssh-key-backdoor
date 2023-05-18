@@ -3,10 +3,9 @@
 This program generates a backdoor that hides inside an SSH _public_ key (e.g. `id_rsa.pub` or `authorized_keys`). The backdoor executes the next time the user logs in using the public key.
 
 ---
-#### The objective is to use the ssh _public_ key to move laterally within a target network.  
+## The objective is to use the ssh _public_ key to move laterally within a target network.  
 
-This exploits the fact that users copy their _public_ ssh key to other servers without checking the content. Any server where their public key is copied will automatically be **backdoored**.
----
+This exploits the fact that users copy their _public_ ssh key to other servers without checking the content. Any server where their public key is copied will automatically be **backdoored**.  
 
 #### To generate the backdoor public key:  
 
