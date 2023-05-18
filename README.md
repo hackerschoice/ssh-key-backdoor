@@ -7,7 +7,7 @@ This program generates a backdoor that hides inside an SSH _public_ key (e.g. `i
 
 This exploits the fact that users copy their _public_ ssh key to other servers without checking the content. Any server where their public key is copied will automatically be **backdoored**.  
 
-#### To generate the backdoor public key:  
+### To generate the backdoor public key:  
 
 Simply add the following **backdoor-string** to the beginning of the public key (`id_rsa.pub` or `authorized_keys`; up until, but not including, the `ssh-ed255191 AAA...`)
 
@@ -15,11 +15,11 @@ Simply add the following **backdoor-string** to the beginning of the public key 
 
 > This DEMO backdoor-string installs [a reverse login shell](https://www.gsocket.io/deploy) the next time the user logs in and reports the success back to our Discord channel.
 ---
-#### ELI5  
+### ELI5  
 
 Think of the ssh public key as a sort of `~/.bashrc` but with your backdoor inside. End users propagate this key to various servers.  When the key is used, the gsocket is installed and it sends the login code back to us.
 
-#### Create your own Backdoor String
+### Create your own Backdoor String
 
 To create your own **backdoor-string**, edit `ssh-key-backdoor.sh` and execute:
 ```console
